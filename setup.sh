@@ -6,6 +6,20 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux flavors
 	echo "Proceeding with install scripts for Linux (Debian)"
 
+	# Install dependencies
+	sudo apt update
+	sudo apt install -y vim emacs stow
+
+	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+	~/.emacs.d/bin/doom install
+	echo "Replacing standard Doom config..."
+	echo
+	rm -rf ~/.doom.d/
+
+	# Copy dotfiles
+	echo "Creating symlinks..."
+	stow .
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
 	echo "Proceeding with install scripts for MacOS"
