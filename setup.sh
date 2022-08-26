@@ -20,6 +20,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "Creating symlinks..."
 	stow .
 
+	# Run Vundle once to pull all the plugins
+	vim -s :PluginInstall
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
 	echo "Proceeding with install scripts for MacOS"
@@ -51,7 +54,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	then
     		echo "Stow could not be found!"
 		echo
-		echo "Installing Stow..."
+		echo "Installing Emacs..."
 		brew install --cask emacs
 	fi
 	echo
@@ -65,6 +68,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	# Copy dotfiles
 	echo "Creating symlinks..."
 	stow .
+
+	# Run Vundle once to pull all the plugins
+	vim -s :PluginInstall
 else
 	echo "Dotfiles repo is set up to work with Linux or MacOS only! Aborting."
 fi
